@@ -1,0 +1,18 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net7.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <UseWPF>true</UseWPF>
+    <Title>Test application for circle sliders</Title>
+    <Company>Jindrich Zerzanek</Company>
+    <Copyright>Jindrich Zerzanek</Copyright>
+    <Authors>Jindrich Zerzanek</Authors>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\CircleSliderControls\CircleSliderControls.csproj" />
+  </ItemGroup>
+
+</Project>

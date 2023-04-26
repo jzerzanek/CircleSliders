@@ -1,0 +1,107 @@
+﻿<UserControl x:Class="CircleSliderControls.AxisCircleSlider"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:CircleSliderControls"
+             mc:Ignorable="d" 
+             Width="120"
+             Height="120"
+             d:DesignHeight="120" d:DesignWidth="120"
+             x:Name="axisCircleSlider">
+    <Grid>
+        <Canvas Focusable="False">
+            <Ellipse
+
+                HorizontalAlignment="Left"
+                Height="120"
+                Width="120"
+                Stroke="#4d4d4d"
+                StrokeThickness="2"
+                Margin="0" >
+                <Ellipse.Fill>
+                    <RadialGradientBrush GradientOrigin="0.75,0.25">
+                        <GradientStop Color="White" Offset="0.0" />
+                        <GradientStop Color="LightGray" Offset="0.5" />
+                        <GradientStop Color="#808080" Offset="1.0" />
+                    </RadialGradientBrush>
+                </Ellipse.Fill>
+
+            </Ellipse>
+
+            <Line X1="60" Y1="2" X2="60" Y2="20" Stroke="Red"
+                StrokeThickness="4" Canvas.ZIndex="20"/>
+
+            <Line X1="2" Y1="60" X2="20" Y2="60" Stroke="#4d4d4d"
+                StrokeThickness="4" Canvas.ZIndex="20"/>
+
+            <Line X1="118" Y1="60" X2="100" Y2="60" Stroke="#4d4d4d"
+                StrokeThickness="4" Canvas.ZIndex="20"/>
+
+            <Line X1="60" Y1="118" X2="60" Y2="100" Stroke="#4d4d4d"
+                StrokeThickness="4" Canvas.ZIndex="20"/>
+        </Canvas>
+
+        <Grid Margin="10">
+            <Grid x:Name="grid" Focusable="False">
+                <Canvas Width="100" Height="100">
+                    <Ellipse
+                x:Name="mainEllipse"
+                Fill="Transparent"
+                HorizontalAlignment="Left"
+                Height="100"
+                Width="100"
+                Margin="0" />
+
+                    <Polygon
+                        x:Name="pointer"
+                    MouseUp="EllipseOnMouseUp"
+                    MouseMove="EllipseOnMouseMove"
+                    MouseDown="EllipseOnMouseDown"
+                    Points="50,-5 21,50 79,50 50,-5"
+                       Stroke="#4d4d4d">
+                        <Polygon.Style>
+                            <Style TargetType="Polygon">
+                                <Setter Property="Fill">
+                                    <Setter.Value>
+                                        <SolidColorBrush Color="#d3d3d3"/>
+                                    </Setter.Value>
+                                </Setter>
+                                <Style.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="true">
+                                        <Setter Property="Fill">
+                                            <Setter.Value>
+                                                <SolidColorBrush Color="#ffffff"/>
+                                            </Setter.Value>
+                                        </Setter>
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Polygon.Style>
+                    </Polygon>
+
+                    <Ellipse
+                     Fill="{Binding ElementName=pointer, Path=Fill}"
+                     Stroke="#4d4d4d"
+                        StrokeThickness="2"
+                     Height="60"
+                     Width="60"
+                     Canvas.Left="20" 
+                     Canvas.Top="20"
+                     MouseUp="EllipseOnMouseUp"
+                     MouseMove="EllipseOnMouseMove"
+                     MouseDown="EllipseOnMouseDown"/>
+                </Canvas>
+            </Grid>
+
+            <TextBox 
+                BorderThickness="0"
+                Background="{Binding ElementName=pointer, Path=Fill}" 
+                Width="50" 
+                Height="20" 
+                Margin="0" 
+                KeyDown="OnTextBoxKeyDown"
+                Text="{Binding ElementName=axisCircleSlider, Path=Value, StringFormat=N2}" TextAlignment="Center"/>
+        </Grid>
+    </Grid>
+</UserControl>

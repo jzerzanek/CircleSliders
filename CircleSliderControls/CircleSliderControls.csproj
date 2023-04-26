@@ -1,0 +1,14 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net7.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <UseWPF>true</UseWPF>
+    <Authors>Jindrich Zerzanek</Authors>
+    <Company>Jindrich Zerzanek</Company>
+    <Description>WPF circle slider controls</Description>
+    <Copyright>Jindrich Zerzanek</Copyright>
+    <Title>Circle slider controls</Title>
+  </PropertyGroup>
+
+</Project>

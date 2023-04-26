@@ -1,0 +1,70 @@
+﻿<UserControl x:Class="CircleSliderControls.BasicCircleSlider"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:CircleSliderControls"
+             mc:Ignorable="d" 
+             Width="120"
+             Height="120"
+             d:DesignHeight="120" d:DesignWidth="120"
+             x:Name="basicCircleSlider">
+    <Grid>
+        <Canvas Focusable="False">
+            <Ellipse
+                HorizontalAlignment="Left"
+                Height="120"
+                Width="120"
+                Stroke="#4d4d4d"
+                StrokeThickness="2"
+                Margin="0" >
+                <Ellipse.Fill>
+                    <RadialGradientBrush GradientOrigin="0.75,0.25">
+                        <GradientStop Color="White" Offset="0.0" />
+                        <GradientStop Color="LightGray" Offset="0.5" />
+                        <GradientStop Color="#808080" Offset="1.0" />
+                    </RadialGradientBrush>
+                </Ellipse.Fill>
+
+            </Ellipse>
+        </Canvas>
+
+        <Grid x:Name="grid" Focusable="False">
+            <Canvas>
+                <Ellipse
+                    x:Name="mainEllipse"
+                    HorizontalAlignment="Left"
+                    Height="120"
+                    Width="120"
+                    Margin="0" />
+
+                <Ellipse 
+                     Fill="#d3d3d3"
+                     Stroke="#4d4d4d"
+                     Height="20"
+                     Width="20"
+                     IsEnabled="True"
+                     Canvas.Left="50" Canvas.Top="5"
+                     MouseMove="EllipseOnMouseMove"
+                     MouseDown="EllipseOnMouseDown"
+                     MouseUp="EllipseOnMouseUp"/>
+            </Canvas>
+        </Grid>
+
+        <Border 
+            Height="25" 
+                Width="60" 
+                BorderThickness="1" 
+                BorderBrush="#4d4d4d" 
+                Background="#d3d3d3" 
+                CornerRadius="10">
+            <TextBox BorderThickness="0" 
+                     Background="#d3d3d3" 
+                     Width="50" Height="20" Margin="0" 
+                     FontSize="12"
+                     VerticalContentAlignment="Center"
+                     KeyDown="OnTextBoxKeyDown"
+                     Text="{Binding ElementName=basicCircleSlider, Path=Value, StringFormat=N3}" TextAlignment="Center"/>
+        </Border>
+    </Grid>
+</UserControl>
