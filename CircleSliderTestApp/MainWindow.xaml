@@ -1,20 +1,19 @@
 ﻿<Window x:Class="CircleSliderTestApp.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:CircleSliderTestApp"
         xmlns:slider="clr-namespace:CircleSliderControls;assembly=CircleSliderControls"
         mc:Ignorable="d"
         Title="Circle sliders" Height="600" Width="800">
     <Grid>
         <StackPanel>
-            <TextBlock Margin="0,10,0,5" TextAlignment="Center">Basic circle slider</TextBlock>
+            <TextBlock Margin="0,10,0,5" TextAlignment="Center">Basic double circle slider</TextBlock>
             <slider:BasicCircleSlider MinValue="0" MaxValue="100" Value="{Binding DoubleValue}" ValueStringFormat="N3"/>
             <TextBlock TextAlignment="Center" Margin="0,20,0,5">Axis circle slider</TextBlock>
-            <slider:AxisCircleSlider MinValue="0" MaxValue="100" Value="{Binding DoubleValue}"/>
+            <slider:AxisCircleSlider MinValue="0" MaxValue="100" Value="{Binding DoubleValue}" ValueStringFormat="N0"/>
             <TextBlock TextAlignment="Center" Margin="0,20,0,5">Basic integer circle slider</TextBlock>
-            <slider:BasicIntCircleSlider MinValue="0" MaxValue="100" Value="{Binding IntValue}"/>
+            <slider:BasicCircleSlider MinValue="0" MaxValue="100" Value="{Binding IntValue}"/>
         </StackPanel>
     </Grid>
 </Window>

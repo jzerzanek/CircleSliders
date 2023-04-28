@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="CircleSliderControls.BasicCircleSlider"
+﻿<local:CircleSliderBase x:Class="CircleSliderControls.BasicCircleSlider"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -67,4 +67,4 @@
                      Text="{Binding ElementName=basicCircleSlider, Path=FormatedValue}" TextAlignment="Center"/>
         </Border>
     </Grid>
-</UserControl>
+</local:CircleSliderBase>
