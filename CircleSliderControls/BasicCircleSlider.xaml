@@ -64,7 +64,7 @@
                      FontSize="12"
                      VerticalContentAlignment="Center"
                      KeyDown="OnTextBoxKeyDown"
-                     Text="{Binding ElementName=basicCircleSlider, Path=Value, StringFormat=N3}" TextAlignment="Center"/>
+                     Text="{Binding ElementName=basicCircleSlider, Path=FormatedValue}" TextAlignment="Center"/>
         </Border>
     </Grid>
 </UserControl>

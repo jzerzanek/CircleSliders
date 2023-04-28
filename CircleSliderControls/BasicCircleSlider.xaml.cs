@@ -1,4 +1,6 @@
 ﻿using System;
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -11,20 +13,20 @@ namespace CircleSliderControls
     /// <summary>
     /// Interaction logic for BasicCircleSlider.xaml
     /// </summary>
-    public partial class BasicCircleSlider : UserControl
+    public partial class BasicCircleSlider : UserControl, INotifyPropertyChanged
     {
         public static readonly DependencyProperty ValueProperty =
-            DependencyProperty.Register("Value", typeof(double), typeof(BasicCircleSlider), new FrameworkPropertyMetadata(0.0, ValueChange)
+            DependencyProperty.Register(nameof(Value), typeof(double), typeof(BasicCircleSlider), new FrameworkPropertyMetadata(0.0, ValueChange)
             {
                 BindsTwoWayByDefault = true,
                 DefaultUpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged,
             });
 
         public static readonly DependencyProperty MinValueProperty =
-            DependencyProperty.Register("MinValue", typeof(double), typeof(BasicCircleSlider), new PropertyMetadata(0.0));
+            DependencyProperty.Register(nameof(MinValue), typeof(double), typeof(BasicCircleSlider), new PropertyMetadata(0.0));
 
         public static readonly DependencyProperty MaxValueProperty =
-            DependencyProperty.Register("MaxValue", typeof(double), typeof(BasicCircleSlider), new PropertyMetadata(0.0));
+            DependencyProperty.Register(nameof(MaxValue), typeof(double), typeof(BasicCircleSlider), new PropertyMetadata(0.0));
 
         private static void ValueChange(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
@@ -54,18 +56,29 @@ namespace CircleSliderControls
             circleSlider.Angle = circleSlider.MinAngle + (multiplier * (circleSlider.MaxAngle - circleSlider.MinAngle));
 
             circleSlider.grid.RenderTransform = new RotateTransform(circleSlider.Angle, circleSlider.centerPosition.X, circleSlider.centerPosition.Y);
+            circleSlider.NotifyPropertyChanged(nameof(FormatedValue));
         }
 
         private readonly Point centerPosition;
-
         private double previousAngle;
-
         private double angle;
+
+        public event PropertyChangedEventHandler? PropertyChanged;
 
         public double Value
         {
             get { return (double)GetValue(ValueProperty); }
             set { SetValue(ValueProperty, value); }
+        }
+
+        public string FormatedValue
+        {
+            get => this.Value.ToString(ValueStringFormat);
+            set
+            {
+                this.Value = Convert.ToDouble(value);
+                this.NotifyPropertyChanged();
+            }
         }
 
         public double MinValue
@@ -80,7 +93,7 @@ namespace CircleSliderControls
             set { SetValue(MaxValueProperty, value); }
         }
 
-        public double Angle
+        private double Angle
         {
             get { return this.angle; }
             set
@@ -95,22 +108,10 @@ namespace CircleSliderControls
                 this.angle = value;
             }
         }
+        private double MinAngle => 0;
+        private double MaxAngle => 360;
 
-        public double MinAngle
-        {
-            get
-            {
-                return 0.0;
-            }
-        }
-
-        public double MaxAngle
-        {
-            get
-            {
-                return 360.0;
-            }
-        }
+        public string ValueStringFormat { get; set; }
 
         public BasicCircleSlider()
         {
@@ -256,6 +257,11 @@ namespace CircleSliderControls
 
                 e.Handled = true;
             }
+        }
+
+        private void NotifyPropertyChanged([CallerMemberName] string propertyName = null)
+        {
+            this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
     }
 }

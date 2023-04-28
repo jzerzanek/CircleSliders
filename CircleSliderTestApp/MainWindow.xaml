@@ -10,7 +10,7 @@
     <Grid>
         <StackPanel>
             <TextBlock Margin="0,10,0,5" TextAlignment="Center">Basic circle slider</TextBlock>
-            <slider:BasicCircleSlider MinValue="0" MaxValue="100" Value="{Binding DoubleValue}"/>
+            <slider:BasicCircleSlider MinValue="0" MaxValue="100" Value="{Binding DoubleValue}" ValueStringFormat="N3"/>
             <TextBlock TextAlignment="Center" Margin="0,20,0,5">Axis circle slider</TextBlock>
             <slider:AxisCircleSlider MinValue="0" MaxValue="100" Value="{Binding DoubleValue}"/>
             <TextBlock TextAlignment="Center" Margin="0,20,0,5">Basic integer circle slider</TextBlock>
